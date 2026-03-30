@@ -2,7 +2,6 @@ import SwiftUI
 
 struct MenuBarView: View {
     @EnvironmentObject private var vm: AppViewModel
-    @Environment(\.openSettings) private var openSettings
 
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
@@ -49,7 +48,7 @@ struct MenuBarView: View {
             Divider()
 
             MenuRowButton(label: "Settings…", icon: "gearshape") {
-                openSettings()
+                NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
                 NSApp.activate(ignoringOtherApps: true)
             }
 
