@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+    "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- App identity -->
+    <key>CFBundleName</key>
+    <string>MoanBar</string>
+    <key>CFBundleDisplayName</key>
+    <string>MoanBar</string>
+    <key>CFBundleIdentifier</key>
+    <string>io.moanbar.MoanBar</string>
+    <key>CFBundleVersion</key>
+    <string>1</string>
+    <key>CFBundleShortVersionString</key>
+    <string>1.0.0</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleExecutable</key>
+    <string>$(EXECUTABLE_NAME)</string>
+    <key>CFBundleInfoDictionaryVersion</key>
+    <string>6.0</string>
+
+    <!-- macOS -->
+    <key>NSPrincipalClass</key>
+    <string>NSApplication</string>
+    <key>NSHighResolutionCapable</key>
+    <true/>
+
+    <!-- Hide from Dock and App Switcher — menu bar only app -->
+    <key>LSUIElement</key>
+    <true/>
+
+    <!-- Minimum OS — MenuBarExtra requires macOS 13 -->
+    <key>LSMinimumSystemVersion</key>
+    <string>13.0</string>
+
+    <!-- Privacy strings (add if Apple requires them for sensor access in future) -->
+    <key>NSMotionUsageDescription</key>
+    <string>MoanBar uses the built-in accelerometer to detect physical taps on your MacBook chassis.</string>
+</dict>
+</plist>

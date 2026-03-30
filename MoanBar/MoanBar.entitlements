@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+    "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!--
+        Direct-distribution (non-App Store) build.
+        App sandbox is intentionally DISABLED so that:
+          - IOKit HID access works for the sensor path
+          - AVAudioPlayer can load bundled resources freely
+          - No entitlement hoops for the SMAppService launch-at-login flow
+
+        If you later move to App Store distribution:
+          1. Enable app-sandbox = true
+          2. Add com.apple.security.device.usb if IOKit HID is used
+          3. Use SMAppService with the login-helper entitlement for launch-at-login
+    -->
+    <key>com.apple.security.app-sandbox</key>
+    <false/>
+
+    <!-- Hardened runtime — required for notarization / Gatekeeper on direct distribution -->
+    <key>com.apple.security.cs.allow-jit</key>
+    <false/>
+    <key>com.apple.security.cs.allow-unsigned-executable-memory</key>
+    <false/>
+    <key>com.apple.security.cs.disable-library-validation</key>
+    <false/>
+</dict>
+</plist>
