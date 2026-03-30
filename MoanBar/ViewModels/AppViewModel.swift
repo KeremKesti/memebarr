@@ -10,7 +10,7 @@ final class AppViewModel: ObservableObject {
 
     // MARK: - Exposed state
 
-    let settings = SettingsStore()
+    @Published var settings = SettingsStore()
 
     @Published var diagnostics = DiagnosticsSnapshot()
     @Published var slapCount: Int = 0
