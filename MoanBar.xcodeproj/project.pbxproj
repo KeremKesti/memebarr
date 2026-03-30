@@ -24,7 +24,6 @@
 		B89E2FBE1AE02CDD00F2D1C7 /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = B89E2F9F1AE02CDD00F2D1C7 /* Sounds */; };
 		B89E2FBF1AE02CDD00F2D1C7 /* Images in Resources */ = {isa = PBXBuildFile; fileRef = B89E2FA01AE02CDD00F2D1C7 /* Images */; };
 		B89E2FC01AE02CDD00F2D1C7 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B89E2FA21AE02CDD00F2D1C7 /* AVFoundation.framework */; };
-		B89E2FC11AE02CDD00F2D1C7 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B89E2FA31AE02CDD00F2D1C7 /* CoreMotion.framework */; };
 		B89E2FC21AE02CDD00F2D1C7 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B89E2FA41AE02CDD00F2D1C7 /* IOKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -49,7 +48,6 @@
 		B89E2FA01AE02CDD00F2D1C7 /* Images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Images; sourceTree = "<group>"; };
 		B89E2FA11AE02CDD00F2D1C7 /* MoanBar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MoanBar.entitlements; sourceTree = "<group>"; };
 		B89E2FA21AE02CDD00F2D1C7 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		B89E2FA31AE02CDD00F2D1C7 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		B89E2FA41AE02CDD00F2D1C7 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -59,7 +57,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B89E2FC01AE02CDD00F2D1C7 /* AVFoundation.framework in Frameworks */,
-				B89E2FC11AE02CDD00F2D1C7 /* CoreMotion.framework in Frameworks */,
 				B89E2FC21AE02CDD00F2D1C7 /* IOKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -193,7 +190,6 @@
 			isa = PBXGroup;
 			children = (
 				B89E2FA21AE02CDD00F2D1C7 /* AVFoundation.framework */,
-				B89E2FA31AE02CDD00F2D1C7 /* CoreMotion.framework */,
 				B89E2FA41AE02CDD00F2D1C7 /* IOKit.framework */,
 			);
 			name = Frameworks;
