@@ -11,6 +11,7 @@
 		B89E2FB11AE02CDD00F2D1C7 /* SensorProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89E2F911AE02CDD00F2D1C7 /* SensorProvider.swift */; };
 		B89E2FB21AE02CDD00F2D1C7 /* SPUSensorProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89E2F921AE02CDD00F2D1C7 /* SPUSensorProvider.swift */; };
 		B89E2FB31AE02CDD00F2D1C7 /* MockSensorProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89E2F931AE02CDD00F2D1C7 /* MockSensorProvider.swift */; };
+		B89E2FC31AE02CDD00F2D1C7 /* MicrophoneSensorProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89E2FC41AE02CDD00F2D1C7 /* MicrophoneSensorProvider.swift */; };
 		B89E2FB41AE02CDD00F2D1C7 /* SlapDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89E2F941AE02CDD00F2D1C7 /* SlapDetector.swift */; };
 		B89E2FB51AE02CDD00F2D1C7 /* AudioEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89E2F951AE02CDD00F2D1C7 /* AudioEngine.swift */; };
 		B89E2FB61AE02CDD00F2D1C7 /* OverlayEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89E2F961AE02CDD00F2D1C7 /* OverlayEngine.swift */; };
@@ -33,6 +34,7 @@
 		B89E2F911AE02CDD00F2D1C7 /* SensorProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorProvider.swift; sourceTree = "<group>"; };
 		B89E2F921AE02CDD00F2D1C7 /* SPUSensorProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPUSensorProvider.swift; sourceTree = "<group>"; };
 		B89E2F931AE02CDD00F2D1C7 /* MockSensorProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSensorProvider.swift; sourceTree = "<group>"; };
+		B89E2FC41AE02CDD00F2D1C7 /* MicrophoneSensorProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicrophoneSensorProvider.swift; sourceTree = "<group>"; };
 		B89E2F941AE02CDD00F2D1C7 /* SlapDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlapDetector.swift; sourceTree = "<group>"; };
 		B89E2F951AE02CDD00F2D1C7 /* AudioEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioEngine.swift; sourceTree = "<group>"; };
 		B89E2F961AE02CDD00F2D1C7 /* OverlayEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayEngine.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				B89E2F911AE02CDD00F2D1C7 /* SensorProvider.swift */,
 				B89E2F921AE02CDD00F2D1C7 /* SPUSensorProvider.swift */,
 				B89E2F931AE02CDD00F2D1C7 /* MockSensorProvider.swift */,
+				B89E2FC41AE02CDD00F2D1C7 /* MicrophoneSensorProvider.swift */,
 			);
 			path = Sensor;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 				B89E2FB11AE02CDD00F2D1C7 /* SensorProvider.swift in Sources */,
 				B89E2FB21AE02CDD00F2D1C7 /* SPUSensorProvider.swift in Sources */,
 				B89E2FB31AE02CDD00F2D1C7 /* MockSensorProvider.swift in Sources */,
+				B89E2FC31AE02CDD00F2D1C7 /* MicrophoneSensorProvider.swift in Sources */,
 				B89E2FB41AE02CDD00F2D1C7 /* SlapDetector.swift in Sources */,
 				B89E2FB51AE02CDD00F2D1C7 /* AudioEngine.swift in Sources */,
 				B89E2FB61AE02CDD00F2D1C7 /* OverlayEngine.swift in Sources */,

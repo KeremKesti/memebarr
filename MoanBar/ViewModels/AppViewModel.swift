@@ -53,20 +53,26 @@ final class AppViewModel: ObservableObject {
     // MARK: - Sensor setup
 
     private func setupSensor() {
-        let real = SPUSensorProvider()
-        let useMock = settings.mockMode || !real.isAvailable
+        let spu = SPUSensorProvider()
 
-        if useMock {
+        if settings.mockMode {
             usingMockMode = true
-            sensorAvailable = settings.mockMode   // available in mock mode, "unavailable" if forced
+            sensorAvailable = true
             let mock = MockSensorProvider()
             mockProvider = mock
             sensorProvider = mock
-        } else {
+        } else if spu.isAvailable {
             usingMockMode = false
             sensorAvailable = true
             mockProvider = nil
-            sensorProvider = real
+            sensorProvider = spu
+        } else {
+            // Hardware HID sensor unavailable (e.g. MacBook Air, Apple Silicon) —
+            // fall back to microphone-based impact detection.
+            usingMockMode = false
+            sensorAvailable = true
+            mockProvider = nil
+            sensorProvider = MicrophoneSensorProvider()
         }
 
         guard let provider = sensorProvider else { return }

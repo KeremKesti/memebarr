@@ -35,8 +35,10 @@
     <key>LSMinimumSystemVersion</key>
     <string>13.0</string>
 
-    <!-- Privacy strings (add if Apple requires them for sensor access in future) -->
+    <!-- Privacy strings -->
     <key>NSMotionUsageDescription</key>
     <string>MoanBar uses the built-in accelerometer to detect physical taps on your MacBook chassis.</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>MoanBar listens for impact sounds through the microphone to detect slaps on your MacBook.</string>
 </dict>
 </plist>
