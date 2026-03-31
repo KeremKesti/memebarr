@@ -19,10 +19,15 @@ final class MicrophoneSensorProvider: SensorProvider {
     private let subject = PassthroughSubject<SensorSample, Never>()
     private let engine  = AVAudioEngine()
 
-    // Scale factor: RMS → g-units.
-    // Typical ambient RMS ≈ 0.002; hard slap ≈ 0.04–0.10.
-    // At scale 80: slap RMS 0.04 → 3.2 "g", comfortably above the 1.5 g default threshold.
+    // Scale factor: attack delta → g-units.
+    // A slap produces a delta of ~0.04 in one buffer; at scale 80 that is 3.2 "g".
     private let rmsScale: Double = 80.0
+
+    // Exponential smoother that tracks the short-term RMS envelope.
+    // alpha = 0.15 → time constant ≈ 75 ms at 86 Hz buffer rate.
+    // Speech rises gradually so the smoother keeps up; a slap outruns it in one frame.
+    private var smoothedRMS: Double = 0
+    private let smoothAlpha: Double = 0.15
 
     var isAvailable: Bool { true }   // microphone is always present on MacBook
 
@@ -89,12 +94,16 @@ final class MicrophoneSensorProvider: SensorProvider {
         for i in 0..<n { sum += ch[i] * ch[i] }
         let rms = Double(sqrt(sum / Float(n)))
 
-        // Map to synthetic sensor sample.
-        // x = 0, z = –1 (gravity constant) so the detector's gravity filter
-        // zeroes out those axes and only the dynamic Y component drives magnitude.
+        // Attack = how much RMS rose above the short-term envelope this frame.
+        // For speech, the envelope tracks the voice so delta stays small (< 0.01).
+        // For a physical slap, RMS jumps from ~0.002 to ~0.05 in one frame;
+        // the smoother hasn't caught up yet, so delta ≈ 0.048 → ~3.8 g.
+        let attack = max(0, rms - smoothedRMS)
+        smoothedRMS = smoothAlpha * rms + (1 - smoothAlpha) * smoothedRMS
+
         subject.send(SensorSample(
             x: 0,
-            y: rms * rmsScale,
+            y: attack * rmsScale,
             z: -1.0,
             timestamp: ProcessInfo.processInfo.systemUptime
         ))
