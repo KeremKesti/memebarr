@@ -8,7 +8,8 @@ final class OverlayEngine {
 
     private var window: OverlayWindow?
     private var allImages: [URL] = []
-    private var lastShownURL: URL?
+    private var recentlyShown: [URL] = []
+    private let recentWindow = 3
     private var hideTask: DispatchWorkItem?
 
     // MARK: - Setup
@@ -39,7 +40,8 @@ final class OverlayEngine {
         }
 
         let chosen = pickImage()
-        lastShownURL = chosen
+        recentlyShown.append(chosen)
+        if recentlyShown.count > recentWindow { recentlyShown.removeFirst() }
 
         // Cancel any pending hide
         hideTask?.cancel()
@@ -77,8 +79,8 @@ final class OverlayEngine {
 
     private func pickImage() -> URL {
         var candidates = allImages
-        if let last = lastShownURL, candidates.count > 1 {
-            candidates.removeAll { $0 == last }
+        if candidates.count > recentWindow {
+            candidates.removeAll { recentlyShown.contains($0) }
         }
         return candidates.randomElement() ?? allImages[0]
     }

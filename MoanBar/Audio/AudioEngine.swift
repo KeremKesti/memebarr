@@ -16,7 +16,8 @@ final class AudioEngine {
 
     private var players: [URL: AVAudioPlayer] = [:]
     private var allClips: [URL] = []
-    private var lastPlayedURL: URL?
+    private var recentlyPlayed: [URL] = []
+    private let recentWindow = 3
 
     // MARK: - Setup
 
@@ -65,7 +66,8 @@ final class AudioEngine {
         player.volume = volumeFor(intensity: intensity)
         player.currentTime = 0
         player.play()
-        lastPlayedURL = chosen
+        recentlyPlayed.append(chosen)
+        if recentlyPlayed.count > recentWindow { recentlyPlayed.removeFirst() }
 
         debugLog(
             "AudioEngine: playing \(chosen.lastPathComponent) vol=\(String(format:"%.2f", player.volume)) dur=\(String(format:"%.2f", player.duration))s",
@@ -79,10 +81,12 @@ final class AudioEngine {
     // MARK: - Private helpers
 
     private func pickClip() -> URL {
-        // Avoid repeating the last clip when there is more than one to choose from.
+        // Exclude the last `recentWindow` clips so the same sound doesn't
+        // repeat within a 3-slap window. Falls back gracefully when the pool
+        // is smaller than the window.
         var candidates = allClips
-        if let last = lastPlayedURL, candidates.count > 1 {
-            candidates.removeAll { $0 == last }
+        if candidates.count > recentWindow {
+            candidates.removeAll { recentlyPlayed.contains($0) }
         }
         return candidates.randomElement() ?? allClips[0]
     }
