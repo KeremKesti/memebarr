@@ -37,6 +37,25 @@ struct MenuBarView: View {
 
             Divider()
 
+            // ── Mode picker ─────────────────────────────────────────────────
+            HStack(spacing: 8) {
+                ModeCard(
+                    icon: "speaker.wave.2.fill",
+                    title: "Only Sound",
+                    selected: !vm.settings.overlayEnabled
+                ) { vm.settings.overlayEnabled = false }
+
+                ModeCard(
+                    icon: "photo.fill",
+                    title: "Sound with Image",
+                    selected: vm.settings.overlayEnabled
+                ) { vm.settings.overlayEnabled = true }
+            }
+            .padding(.horizontal, 4)
+            .disabled(!vm.settings.isEnabled)
+
+            Divider()
+
             // ── Quick actions ───────────────────────────────────────────────
             MenuRowButton(label: "Test slap", icon: "hand.tap") {
                 vm.testSlap()

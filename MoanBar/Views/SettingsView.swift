@@ -148,7 +148,7 @@ private struct AudioTab: View {
 
 // MARK: - Mode card button
 
-private struct ModeCard: View {
+struct ModeCard: View {
     let icon: String
     let title: String
     let selected: Bool
