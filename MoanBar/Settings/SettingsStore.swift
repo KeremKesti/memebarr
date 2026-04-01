@@ -55,7 +55,7 @@ final class SettingsStore: ObservableObject {
         mockMode      = d.optionalBool(Key.mockMode.rawValue)     ?? false
         launchAtLogin = d.optionalBool(Key.launchAtLogin.rawValue) ?? false
         sensitivity   = d.optionalDouble(Key.sensitivity.rawValue) ?? 1.5
-        cooldown      = d.optionalDouble(Key.cooldown.rawValue)    ?? 0.4
+        cooldown      = d.optionalDouble(Key.cooldown.rawValue)    ?? 0.15
         minVolume     = d.optionalDouble(Key.minVolume.rawValue)   ?? 0.10
         maxVolume     = d.optionalDouble(Key.maxVolume.rawValue)   ?? 0.90
     }
