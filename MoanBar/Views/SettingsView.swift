@@ -35,11 +35,19 @@ private struct GeneralTab: View {
             Section("Behaviour") {
                 Toggle("Enable MoanBar", isOn: $vm.settings.isEnabled)
 
-                Picker("Mode", selection: $vm.settings.overlayEnabled) {
-                    Text("Only Sound").tag(false)
-                    Text("Sound with Images").tag(true)
+                HStack(spacing: 12) {
+                    ModeCard(
+                        icon: "speaker.wave.2.fill",
+                        title: "Only Sound",
+                        selected: !vm.settings.overlayEnabled
+                    ) { vm.settings.overlayEnabled = false }
+
+                    ModeCard(
+                        icon: "photo.fill",
+                        title: "Sound with Images",
+                        selected: vm.settings.overlayEnabled
+                    ) { vm.settings.overlayEnabled = true }
                 }
-                .pickerStyle(.segmented)
                 .disabled(!vm.settings.isEnabled)
 
                 Toggle("Mock mode (no hardware required)", isOn: $vm.settings.mockMode)
@@ -135,6 +143,37 @@ private struct AudioTab: View {
             }
         }
         .formStyle(.grouped)
+    }
+}
+
+// MARK: - Mode card button
+
+private struct ModeCard: View {
+    let icon: String
+    let title: String
+    let selected: Bool
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            VStack(spacing: 8) {
+                Image(systemName: icon)
+                    .font(.system(size: 26))
+                Text(title)
+                    .font(.subheadline)
+                    .multilineTextAlignment(.center)
+            }
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 14)
+            .background(selected ? Color.accentColor.opacity(0.15) : Color.secondary.opacity(0.08))
+            .overlay(
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(selected ? Color.accentColor : Color.clear, lineWidth: 2)
+            )
+            .cornerRadius(10)
+            .foregroundStyle(selected ? Color.accentColor : Color.primary)
+        }
+        .buttonStyle(.plain)
     }
 }
 
