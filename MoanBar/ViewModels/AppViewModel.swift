@@ -159,8 +159,8 @@ final class AppViewModel: ObservableObject {
 
     private func handleSlap(_ event: SlapEvent) {
         slapCount += 1
-        if settings.soundEnabled   { audioEngine.play(intensity: event.intensity) }
-        if settings.overlayEnabled { overlayEngine.show() }
+        let clipDuration = settings.soundEnabled ? audioEngine.play(intensity: event.intensity) : 2.0
+        if settings.overlayEnabled { overlayEngine.show(for: clipDuration) }
         logger.info("Slap #\(self.slapCount) intensity=\(String(format:"%.2f", event.intensity))")
     }
 

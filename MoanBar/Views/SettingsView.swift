@@ -34,8 +34,14 @@ private struct GeneralTab: View {
             // ── App behaviour ───────────────────────────────────────────────
             Section("Behaviour") {
                 Toggle("Enable MoanBar", isOn: $vm.settings.isEnabled)
-                Toggle("Enable sound", isOn: $vm.settings.soundEnabled)
-                Toggle("Enable image overlay", isOn: $vm.settings.overlayEnabled)
+
+                Picker("Mode", selection: $vm.settings.overlayEnabled) {
+                    Text("Only Sound").tag(false)
+                    Text("Sound with Images").tag(true)
+                }
+                .pickerStyle(.segmented)
+                .disabled(!vm.settings.isEnabled)
+
                 Toggle("Mock mode (no hardware required)", isOn: $vm.settings.mockMode)
 
                 HStack {

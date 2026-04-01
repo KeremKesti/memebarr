@@ -28,9 +28,10 @@ final class OverlayEngine {
 
     // MARK: - Showing
 
-    /// Displays a random image overlay for ~2 s with fade-in/out.
-    /// Calling show() while an overlay is visible resets the timer.
-    func show() {
+    /// Displays a random image overlay for `duration` seconds with fade-in/out.
+    /// Duration should match the audio clip length so the image disappears when
+    /// the sound ends. Calling show() while an overlay is visible resets the timer.
+    func show(for duration: TimeInterval = 2.0) {
         assert(Thread.isMainThread)
         guard !allImages.isEmpty else {
             debugLog("OverlayEngine: no images loaded — skipping overlay", category: "overlay")
@@ -50,7 +51,7 @@ final class OverlayEngine {
         guard let panel = window else { return }
 
         // Swap content view with fresh SwiftUI host so animation re-triggers
-        let host = NSHostingView(rootView: OverlayImageView(imageURL: chosen))
+        let host = NSHostingView(rootView: OverlayImageView(imageURL: chosen, duration: duration))
         host.frame = panel.contentRect(forFrameRect: panel.frame)
         panel.contentView = host
 
@@ -60,14 +61,14 @@ final class OverlayEngine {
         }
         panel.orderFront(nil)
 
-        debugLog("OverlayEngine: showing \(chosen.lastPathComponent)", category: "overlay")
+        debugLog("OverlayEngine: showing \(chosen.lastPathComponent) for \(String(format:"%.2f", duration))s", category: "overlay")
 
-        // Schedule hide after 2 s
+        // Schedule hide after the clip duration
         let task = DispatchWorkItem { [weak self] in
             self?.window?.orderOut(nil)
         }
         hideTask = task
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: task)
+        DispatchQueue.main.asyncAfter(deadline: .now() + duration, execute: task)
     }
 
     var imageCount: Int { allImages.count }
@@ -87,7 +88,11 @@ final class OverlayEngine {
 
 private struct OverlayImageView: View {
     let imageURL: URL
+    let duration: TimeInterval
     @State private var opacity: Double = 0
+
+    private let fadeIn:  TimeInterval = 0.25
+    private let fadeOut: TimeInterval = 0.35
 
     var body: some View {
         ZStack {
@@ -107,11 +112,13 @@ private struct OverlayImageView: View {
     }
 
     private func startAnimation() {
-        withAnimation(.easeIn(duration: 0.25)) {
+        withAnimation(.easeIn(duration: fadeIn)) {
             opacity = 1
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.6) {
-            withAnimation(.easeOut(duration: 0.35)) {
+        // Start fade-out early enough so it finishes exactly when the clip ends
+        let fadeOutStart = max(fadeIn, duration - fadeOut)
+        DispatchQueue.main.asyncAfter(deadline: .now() + fadeOutStart) {
+            withAnimation(.easeOut(duration: fadeOut)) {
                 opacity = 0
             }
         }

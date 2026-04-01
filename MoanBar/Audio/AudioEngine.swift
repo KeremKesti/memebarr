@@ -50,15 +50,17 @@ final class AudioEngine {
     // MARK: - Playback
 
     /// Selects a random clip (avoiding the last played), maps `intensity` to
-    /// volume, and plays immediately. Low latency because clips are preloaded.
-    func play(intensity: Double) {
+    /// volume, and plays immediately. Returns the clip's duration in seconds
+    /// so callers can synchronise the overlay lifetime to the audio.
+    @discardableResult
+    func play(intensity: Double) -> TimeInterval {
         guard !allClips.isEmpty else {
             debugLog("AudioEngine: no clips loaded — skipping playback", category: "audio")
-            return
+            return 2.0
         }
 
         let chosen = pickClip()
-        guard let player = players[chosen] else { return }
+        guard let player = players[chosen] else { return 2.0 }
 
         player.volume = volumeFor(intensity: intensity)
         player.currentTime = 0
@@ -66,9 +68,10 @@ final class AudioEngine {
         lastPlayedURL = chosen
 
         debugLog(
-            "AudioEngine: playing \(chosen.lastPathComponent) vol=\(String(format:"%.2f", player.volume))",
+            "AudioEngine: playing \(chosen.lastPathComponent) vol=\(String(format:"%.2f", player.volume)) dur=\(String(format:"%.2f", player.duration))s",
             category: "audio"
         )
+        return player.duration
     }
 
     var clipCount: Int { allClips.count }
