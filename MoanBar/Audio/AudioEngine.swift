@@ -18,6 +18,8 @@ final class AudioEngine {
     private var allClips: [URL] = []
     private var recentlyPlayed: [URL] = []
     private let recentWindow = 3
+    /// Per-clip gain multiplier so all clips play at roughly the same loudness.
+    private var normGain: [URL: Float] = [:]
 
     // MARK: - Setup
 
@@ -45,6 +47,7 @@ final class AudioEngine {
         }
 
         allClips = Array(players.keys)
+        computeNormGains()
         debugLog("AudioEngine: preloaded \(allClips.count) clip(s)", category: "audio")
     }
 
@@ -63,7 +66,8 @@ final class AudioEngine {
         let chosen = pickClip()
         guard let player = players[chosen] else { return 2.0 }
 
-        player.volume = volumeFor(intensity: intensity)
+        let gain = normGain[chosen] ?? 1.0
+        player.volume = min(volumeFor(intensity: intensity) * gain, 1.0)
         player.currentTime = 0
         player.play()
         recentlyPlayed.append(chosen)
@@ -93,8 +97,66 @@ final class AudioEngine {
 
     private func volumeFor(intensity: Double) -> Float {
         let clamped = Float(max(0.0, min(1.0, intensity)))
-        // Linear ramp between minVolume and maxVolume.
-        // A soft-knee curve can be substituted here later without API changes.
         return minVolume + clamped * (maxVolume - minVolume)
+    }
+
+    // MARK: - Loudness normalisation
+
+    /// Measures the RMS amplitude of every loaded clip, finds the median RMS,
+    /// then stores a per-clip gain so all clips land near that median level.
+    /// Gain is capped at 4× to avoid over-amplifying very quiet clips.
+    private func computeNormGains() {
+        var rmsMap: [URL: Float] = [:]
+        for url in allClips {
+            if let rms = measureRMS(url: url), rms > 0 {
+                rmsMap[url] = rms
+            }
+        }
+        guard !rmsMap.isEmpty else { return }
+
+        let sorted = rmsMap.values.sorted()
+        let medianRMS = sorted[sorted.count / 2]
+
+        for (url, rms) in rmsMap {
+            let gain = (medianRMS / rms).clamped(to: 0.25...4.0)
+            normGain[url] = gain
+            debugLog(
+                "AudioEngine: \(url.lastPathComponent) rms=\(String(format:"%.4f", rms)) gain=\(String(format:"%.2f", gain))×",
+                category: "audio"
+            )
+        }
+    }
+
+    /// Reads the PCM samples of `url` via AVAudioFile and returns the RMS level.
+    private func measureRMS(url: URL) -> Float? {
+        guard let file = try? AVAudioFile(forReading: url),
+              let buffer = AVAudioPCMBuffer(
+                pcmFormat: file.processingFormat,
+                frameCapacity: AVAudioFrameCount(file.length)
+              ),
+              (try? file.read(into: buffer)) != nil,
+              let channelData = buffer.floatChannelData
+        else { return nil }
+
+        let frameCount = Int(buffer.frameLength)
+        let channelCount = Int(file.processingFormat.channelCount)
+        guard frameCount > 0, channelCount > 0 else { return nil }
+
+        var sumOfSquares: Float = 0
+        for ch in 0..<channelCount {
+            let data = channelData[ch]
+            for i in 0..<frameCount {
+                sumOfSquares += data[i] * data[i]
+            }
+        }
+        return sqrt(sumOfSquares / Float(frameCount * channelCount))
+    }
+}
+
+// MARK: - Comparable clamping helper
+
+private extension Comparable {
+    func clamped(to range: ClosedRange<Self>) -> Self {
+        min(max(self, range.lowerBound), range.upperBound)
     }
 }
