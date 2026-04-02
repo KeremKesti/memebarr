@@ -24,8 +24,13 @@ final class AudioEngine {
     // MARK: - Setup
 
     /// Scans `folder` for mp3/wav/m4a files and preloads each one.
+    /// Clears any previously loaded clips first.
     /// Safe to call when no files exist; the engine simply stays silent.
     func loadClips(from folder: URL) {
+        players.removeAll()
+        allClips.removeAll()
+        recentlyPlayed.removeAll()
+        normGain.removeAll()
         let supportedExtensions = Set(["mp3", "wav", "m4a", "aiff", "caf"])
         guard let entries = try? FileManager.default.contentsOfDirectory(
             at: folder, includingPropertiesForKeys: [.isRegularFileKey]

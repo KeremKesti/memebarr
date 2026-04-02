@@ -14,8 +14,10 @@ final class OverlayEngine {
 
     // MARK: - Setup
 
-    /// Scans `folder` for supported image files. Safe to call when folder is empty.
+    /// Scans `folder` for supported image files. Clears previously loaded images first.
     func loadImages(from folder: URL) {
+        allImages.removeAll()
+        recentlyShown.removeAll()
         let supported = Set(["png", "jpg", "jpeg", "gif", "webp", "heic"])
         guard let entries = try? FileManager.default.contentsOfDirectory(
             at: folder, includingPropertiesForKeys: [.isRegularFileKey]

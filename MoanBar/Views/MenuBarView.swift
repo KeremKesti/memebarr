@@ -37,6 +37,25 @@ struct MenuBarView: View {
 
             Divider()
 
+            // ── Character picker ────────────────────────────────────────────
+            HStack(spacing: 8) {
+                ModeCard(
+                    icon: "figure.wave",
+                    title: "Anime Girl",
+                    selected: vm.settings.character == "Girl"
+                ) { vm.settings.character = "Girl" }
+
+                ModeCard(
+                    icon: "pawprint.fill",
+                    title: "Cat",
+                    selected: vm.settings.character == "Cat"
+                ) { vm.settings.character = "Cat" }
+            }
+            .padding(.horizontal, 4)
+            .disabled(!vm.settings.isEnabled)
+
+            Divider()
+
             // ── Mode picker ─────────────────────────────────────────────────
             HStack(spacing: 8) {
                 ModeCard(

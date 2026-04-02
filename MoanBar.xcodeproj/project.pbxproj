@@ -22,8 +22,10 @@
 		B89E2FBB1AE02CDD00F2D1C7 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89E2F9B1AE02CDD00F2D1C7 /* SettingsView.swift */; };
 		B89E2FBC1AE02CDD00F2D1C7 /* DiagnosticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89E2F9C1AE02CDD00F2D1C7 /* DiagnosticsView.swift */; };
 		B89E2FBD1AE02CDD00F2D1C7 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89E2F9D1AE02CDD00F2D1C7 /* Logging.swift */; };
-		B89E2FBE1AE02CDD00F2D1C7 /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = B89E2F9F1AE02CDD00F2D1C7 /* Sounds */; };
-		B89E2FBF1AE02CDD00F2D1C7 /* Images in Resources */ = {isa = PBXBuildFile; fileRef = B89E2FA01AE02CDD00F2D1C7 /* Images */; };
+		CA2000011AE02CDD00F2D1C7 /* Girl_Sounds in Resources */ = {isa = PBXBuildFile; fileRef = CA1000011AE02CDD00F2D1C7 /* Girl_Sounds */; };
+		CA2000021AE02CDD00F2D1C7 /* Girl_Images in Resources */ = {isa = PBXBuildFile; fileRef = CA1000021AE02CDD00F2D1C7 /* Girl_Images */; };
+		CA2000031AE02CDD00F2D1C7 /* Cat_Sounds in Resources */ = {isa = PBXBuildFile; fileRef = CA1000031AE02CDD00F2D1C7 /* Cat_Sounds */; };
+		CA2000041AE02CDD00F2D1C7 /* Cat_Images in Resources */ = {isa = PBXBuildFile; fileRef = CA1000041AE02CDD00F2D1C7 /* Cat_Images */; };
 		B89E2FC01AE02CDD00F2D1C7 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B89E2FA21AE02CDD00F2D1C7 /* AVFoundation.framework */; };
 		B89E2FC21AE02CDD00F2D1C7 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B89E2FA41AE02CDD00F2D1C7 /* IOKit.framework */; };
 /* End PBXBuildFile section */
@@ -46,8 +48,10 @@
 		B89E2F9C1AE02CDD00F2D1C7 /* DiagnosticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosticsView.swift; sourceTree = "<group>"; };
 		B89E2F9D1AE02CDD00F2D1C7 /* Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
 		B89E2F9E1AE02CDD00F2D1C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B89E2F9F1AE02CDD00F2D1C7 /* Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Sounds; sourceTree = "<group>"; };
-		B89E2FA01AE02CDD00F2D1C7 /* Images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Images; sourceTree = "<group>"; };
+		CA1000011AE02CDD00F2D1C7 /* Girl_Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Girl_Sounds; sourceTree = "<group>"; };
+		CA1000021AE02CDD00F2D1C7 /* Girl_Images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Girl_Images; sourceTree = "<group>"; };
+		CA1000031AE02CDD00F2D1C7 /* Cat_Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Cat_Sounds; sourceTree = "<group>"; };
+		CA1000041AE02CDD00F2D1C7 /* Cat_Images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Cat_Images; sourceTree = "<group>"; };
 		B89E2FA11AE02CDD00F2D1C7 /* MoanBar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MoanBar.entitlements; sourceTree = "<group>"; };
 		B89E2FA21AE02CDD00F2D1C7 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		B89E2FA41AE02CDD00F2D1C7 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
@@ -183,8 +187,10 @@
 		B89E2F8B1AE02CDD00F2D1C7 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				B89E2F9F1AE02CDD00F2D1C7 /* Sounds */,
-				B89E2FA01AE02CDD00F2D1C7 /* Images */,
+				CA1000011AE02CDD00F2D1C7 /* Girl_Sounds */,
+				CA1000021AE02CDD00F2D1C7 /* Girl_Images */,
+				CA1000031AE02CDD00F2D1C7 /* Cat_Sounds */,
+				CA1000041AE02CDD00F2D1C7 /* Cat_Images */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -256,8 +262,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B89E2FBE1AE02CDD00F2D1C7 /* Sounds in Resources */,
-				B89E2FBF1AE02CDD00F2D1C7 /* Images in Resources */,
+				CA2000011AE02CDD00F2D1C7 /* Girl_Sounds in Resources */,
+				CA2000021AE02CDD00F2D1C7 /* Girl_Images in Resources */,
+				CA2000031AE02CDD00F2D1C7 /* Cat_Sounds in Resources */,
+				CA2000041AE02CDD00F2D1C7 /* Cat_Images in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

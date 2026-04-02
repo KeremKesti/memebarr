@@ -41,11 +41,12 @@ final class AppViewModel: ObservableObject {
 
     private func loadAssets() {
         let base = Bundle.main.resourceURL
+        let char = settings.character  // "Girl" or "Cat"
 
-        if let soundsURL = base?.appendingPathComponent("Sounds") {
+        if let soundsURL = base?.appendingPathComponent("\(char)_Sounds") {
             audioEngine.loadClips(from: soundsURL)
         }
-        if let imagesURL = base?.appendingPathComponent("Images") {
+        if let imagesURL = base?.appendingPathComponent("\(char)_Images") {
             overlayEngine.loadImages(from: imagesURL)
         }
     }
@@ -140,6 +141,15 @@ final class AppViewModel: ObservableObject {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 self?.restartSensorStack()
+            }
+            .store(in: &cancellables)
+
+        // Reload assets when character changes
+        settings.$character
+            .dropFirst()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.loadAssets()
             }
             .store(in: &cancellables)
     }
