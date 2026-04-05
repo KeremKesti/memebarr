@@ -1,0 +1,902 @@
+{
+    "Version": 1,
+    "Name": "SoftGothGirl",
+    "ModelID": "342301bb7f9f42f68b93fc0b94e4544e",
+    "FileReferences": {
+        "Icon": "vts-2024-06-17_03h38_35.png",
+        "Model": "fourteenths.model3.json",
+        "IdleAnimation": "",
+        "IdleAnimationWhenTrackingLost": ""
+    },
+    "ModelSaveMetadata": {
+        "LastSavedVTubeStudioVersion": "1.28.15",
+        "LastSavedPlatform": "Steam",
+        "LastSavedDateUTC": "Sunday, 16 June 2024, 17:40:42",
+        "LastSavedDateLocalTime": "Monday, 17 June 2024, 03:40:42",
+        "LastSavedDateUnixMillisecondTimestamp": "1718559642854"
+    },
+    "SavedModelPosition": {
+        "Position": {
+            "x": 4.58335018157959,
+            "y": -9.33333969116211,
+            "z": 0.0
+        },
+        "Rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 1.0
+        },
+        "Scale": {
+            "x": 1.840746283531189,
+            "y": 1.840746283531189,
+            "z": 1.0
+        }
+    },
+    "ModelPositionMovement": {
+        "Use": true,
+        "X": 6,
+        "Y": 8,
+        "Z": 11,
+        "SmoothingX": 10,
+        "SmoothingY": 10,
+        "SmoothingZ": 10
+    },
+    "ItemSettings": {
+        "OnlyMoveWhenPinned": false,
+        "AllowNormalHotkeyTriggers": true,
+        "Multiplier_HeadAngleX": 1.0,
+        "Multiplier_HeadAngleY": 1.0,
+        "Multiplier_HeadAngleZ": 1.0,
+        "Shift_HeadAngleX": 0.0,
+        "Shift_HeadAngleY": 0.0,
+        "Smoothing_HeadAngleX": 15.0,
+        "Smoothing_HeadAngleY": 15.0,
+        "Smoothing_HeadAngleZ": 15.0
+    },
+    "PhysicsSettings": {
+        "Use": true,
+        "UseLegacyPhysics": false,
+        "Live2DPhysicsFPS": 3,
+        "PhysicsStrength": 60,
+        "WindStrength": 100,
+        "DraggingPhysicsStrength": 50
+    },
+    "GeneralSettings": {
+        "TimeUntilTrackingLostIdleAnimation": 0.0,
+        "WorkshopSharingForbidden": true,
+        "EnableExpressionSaving": false
+    },
+    "ParameterSettings": [
+        {
+            "Folder": "",
+            "Name": "Face Left/Right Rotation",
+            "Input": "FaceAngleX",
+            "InputRangeLower": -30.0,
+            "InputRangeUpper": 30.0,
+            "OutputRangeLower": -30.0,
+            "OutputRangeUpper": 30.0,
+            "ClampInput": false,
+            "ClampOutput": false,
+            "UseBlinking": false,
+            "UseBreathing": false,
+            "OutputLive2D": "ParamAngleX",
+            "Smoothing": 15,
+            "Minimized": false
+        },
+        {
+            "Folder": "",
+            "Name": "Face Up/Down Rotation",
+            "Input": "FaceAngleY",
+            "InputRangeLower": -20.0,
+            "InputRangeUpper": 20.0,
+            "OutputRangeLower": -20.0,
+            "OutputRangeUpper": 30.0,
+            "ClampInput": false,
+            "ClampOutput": false,
+            "UseBlinking": false,
+            "UseBreathing": false,
+            "OutputLive2D": "ParamAngleY",
+            "Smoothing": 15,
+            "Minimized": false
+        },
+        {
+            "Folder": "",
+            "Name": "Face Lean Rotation",
+            "Input": "FaceAngleZ",
+            "InputRangeLower": -30.0,
+            "InputRangeUpper": 30.0,
+            "OutputRangeLower": -30.0,
+            "OutputRangeUpper": 30.0,
+            "ClampInput": false,
+            "ClampOutput": false,
+            "UseBlinking": false,
+            "UseBreathing": false,
+            "OutputLive2D": "ParamAngleZ",
+            "Smoothing": 30,
+            "Minimized": false
+        },
+        {
+            "Folder": "",
+            "Name": "Eye Open Left",
+            "Input": "EyeOpenLeft",
+            "InputRangeLower": 0.0,
+            "InputRangeUpper": 1.0,
+            "OutputRangeLower": 0.0,
+            "OutputRangeUpper": 1.899999976158142,
+            "ClampInput": false,
+            "ClampOutput": false,
+            "UseBlinking": false,
+            "UseBreathing": false,
+            "OutputLive2D": "ParamEyeLOpen",
+            "Smoothing": 20,
+            "Minimized": false
+        },
+        {
+            "Folder": "",
+            "Name": "Eye Smile Left",
+            "Input": "MouthSmile",
+            "InputRangeLower": 0.0,
+            "InputRangeUpper": 1.0,
+            "OutputRangeLower": 0.0,
+            "OutputRangeUpper": 1.0,
+            "ClampInput": false,
+            "ClampOutput": false,
+            "UseBlinking": false,
+            "UseBreathing": false,
+            "OutputLive2D": "ParamEyeLSmile",
+            "Smoothing": 10,
+            "Minimized": false
+        },
+        {
+            "Folder": "",
+            "Name": "Eye Open Right",
+            "Input": "EyeOpenRight",
+            "InputRangeLower": 0.0,
+            "InputRangeUpper": 1.0,
+            "OutputRangeLower": 0.0,
+            "OutputRangeUpper": 1.899999976158142,
+            "ClampInput": false,
+            "ClampOutput": false,
+            "UseBlinking": false,
+            "UseBreathing": false,
+            "OutputLive2D": "ParamEyeROpen",
+            "Smoothing": 20,
+            "Minimized": false
+        },
+        {
+            "Folder": "",
+            "Name": "Eye Smile Right",
+            "Input": "MouthSmile",
+            "InputRangeLower": 0.0,
+            "InputRangeUpper": 1.0,
+            "OutputRangeLower": 0.0,
+            "OutputRangeUpper": 1.0,
+            "ClampInput": false,
+            "ClampOutput": false,
+            "UseBlinking": false,
+            "UseBreathing": false,
+            "OutputLive2D": "ParamEyeRSmile",
+            "Smoothing": 10,
+            "Minimized": false
+        },
+        {
+            "Folder": "",
+            "Name": "Eye X",
+            "Input": "EyeRightX",
+            "InputRangeLower": -1.0,
+            "InputRangeUpper": 1.0,
+            "OutputRangeLower": 1.0,
+            "OutputRangeUpper": -1.0,
+            "ClampInput": false,
+            "ClampOutput": false,
+            "UseBlinking": false,
+            "UseBreathing": false,
+            "OutputLive2D": "ParamEyeBallX",
+            "Smoothing": 8,
+            "Minimized": false
+        },
+        {
+            "Folder": "",
+            "Name": "Eye Y",
+            "Input": "EyeRightY",
+            "InputRangeLower": -1.0,
+            "InputRangeUpper": 1.0,
+            "OutputRangeLower": -1.0,
+            "OutputRangeUpper": 1.0,
+            "ClampInput": false,
+            "ClampOutput": false,
+            "UseBlinking": false,
+            "UseBreathing": false,
+            "OutputLive2D": "ParamEyeBallY",
+            "Smoothing": 8,
+            "Minimized": false
+        },
+        {
+            "Folder": "",
+            "Name": "Brow Height Left",
+            "Input": "Brows",
+            "InputRangeLower": 0.0,
+            "InputRangeUpper": 1.0,
+            "OutputRangeLower": -1.0,
+            "OutputRangeUpper": 1.0,
+            "ClampInput": false,
+            "ClampOutput": false,
+            "UseBlinking": false,
+            "UseBreathing": false,
+            "OutputLive2D": "ParamBrowLY",
+            "Smoothing": 10,
+            "Minimized": false
+        },
+        {
+            "Folder": "",
+            "Name": "Brow Height Right",
+            "Input": "Brows",
+            "InputRangeLower": 0.0,
+            "InputRangeUpper": 1.0,
+            "OutputRangeLower": -1.0,
+            "OutputRangeUpper": 1.0,
+            "ClampInput": false,
+            "ClampOutput": false,
+            "UseBlinking": false,
+            "UseBreathing": false,
+            "OutputLive2D": "ParamBrowRY",
+            "Smoothing": 10,
+            "Minimized": false
+        },
+        {
+            "Folder": "",
+            "Name": "Brow Form Left",
+            "Input": "Brows",
+            "InputRangeLower": 0.0,
+            "InputRangeUpper": 1.0,
+            "OutputRangeLower": -0.5,
+            "OutputRangeUpper": 0.5,
+            "ClampInput": false,
+            "ClampOutput": false,
+            "UseBlinking": false,
+            "UseBreathing": false,
+            "OutputLive2D": "ParamBrowLForm",
+            "Smoothing": 15,
+            "Minimized": false
+        },
+        {
+            "Folder": "",
+            "Name": "Brow Form Right",
+            "Input": "Brows",
+            "InputRangeLower": 0.0,
+            "InputRangeUpper": 1.0,
+            "OutputRangeLower": -0.5,
+            "OutputRangeUpper": 0.5,
+            "ClampInput": false,
+            "ClampOutput": false,
+            "UseBlinking": false,
+            "UseBreathing": false,
+            "OutputLive2D": "ParamBrowRForm",
+            "Smoothing": 15,
+            "Minimized": false
+        },
+        {
+            "Folder": "",
+            "Name": "Mouth Smile",
+            "Input": "MouthSmile",
+            "InputRangeLower": 0.0,
+            "InputRangeUpper": 1.0,
+            "OutputRangeLower": -1.0,
+            "OutputRangeUpper": 1.0,
+            "ClampInput": false,
+            "ClampOutput": false,
+            "UseBlinking": false,
+            "UseBreathing": false,
+            "OutputLive2D": "ParamMouthForm",
+            "Smoothing": 0,
+            "Minimized": false
+        },
+        {
+            "Folder": "",
+            "Name": "Mouth Open",
+            "Input": "MouthOpen",
+            "InputRangeLower": 0.0,
+            "InputRangeUpper": 0.8999999761581421,
+            "OutputRangeLower": 0.0,
+            "OutputRangeUpper": 2.0999999046325685,
+            "ClampInput": false,
+            "ClampOutput": false,
+            "UseBlinking": false,
+            "UseBreathing": false,
+            "OutputLive2D": "ParamMouthOpenY",
+            "Smoothing": 0,
+            "Minimized": false
+        },
+        {
+            "Folder": "",
+            "Name": "Blush when smiling",
+            "Input": "MouthSmile",
+            "InputRangeLower": 0.0,
+            "InputRangeUpper": 1.0,
+            "OutputRangeLower": 0.5,
+            "OutputRangeUpper": 1.0,
+            "ClampInput": false,
+            "ClampOutput": false,
+            "UseBlinking": false,
+            "UseBreathing": false,
+            "OutputLive2D": "ParamCheek",
+            "Smoothing": 45,
+            "Minimized": false
+        },
+        {
+            "Folder": "",
+            "Name": "Body Rotation X",
+            "Input": "FaceAngleX",
+            "InputRangeLower": -30.0,
+            "InputRangeUpper": 30.0,
+            "OutputRangeLower": -10.0,
+            "OutputRangeUpper": 10.0,
+            "ClampInput": false,
+            "ClampOutput": false,
+            "UseBlinking": false,
+            "UseBreathing": false,
+            "OutputLive2D": "ParamBodyAngleX",
+            "Smoothing": 20,
+            "Minimized": false
+        },
+        {
+            "Folder": "",
+            "Name": "Body Rotation Y",
+            "Input": "FaceAngleY",
+            "InputRangeLower": -30.0,
+            "InputRangeUpper": 30.0,
+            "OutputRangeLower": -10.0,
+            "OutputRangeUpper": 10.0,
+            "ClampInput": false,
+            "ClampOutput": false,
+            "UseBlinking": false,
+            "UseBreathing": false,
+            "OutputLive2D": "ParamBodyAngleY",
+            "Smoothing": 20,
+            "Minimized": false
+        },
+        {
+            "Folder": "",
+            "Name": "Body Rotation Z",
+            "Input": "FaceAngleZ",
+            "InputRangeLower": -30.0,
+            "InputRangeUpper": 30.0,
+            "OutputRangeLower": -10.0,
+            "OutputRangeUpper": 10.0,
+            "ClampInput": false,
+            "ClampOutput": false,
+            "UseBlinking": false,
+            "UseBreathing": false,
+            "OutputLive2D": "ParamBodyAngleZ",
+            "Smoothing": 20,
+            "Minimized": false
+        },
+        {
+            "Folder": "",
+            "Name": "Auto Breath",
+            "Input": "",
+            "InputRangeLower": 0.0,
+            "InputRangeUpper": 1.0,
+            "OutputRangeLower": 0.0,
+            "OutputRangeUpper": 1.0,
+            "ClampInput": false,
+            "ClampOutput": false,
+            "UseBlinking": false,
+            "UseBreathing": true,
+            "OutputLive2D": "ParamBreath",
+            "Smoothing": 0,
+            "Minimized": false
+        }
+    ],
+    "Hotkeys": [
+        {
+            "HotkeyID": "13f61152d0d745c38ab86a5bde62d1ca",
+            "Name": "Amazed",
+            "Action": "ToggleExpression",
+            "File": "Amazed.exp3.json",
+            "Folder": "",
+            "Position": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.0,
+                "Rotation": 0.0
+            },
+            "ColorOverlay": {
+                "On": false,
+                "IsStaticColor": false,
+                "Display": -1,
+                "WindowName": "",
+                "IncludeLeft": false,
+                "IncludeMid": false,
+                "IncludeRight": false,
+                "BaseValue": 0,
+                "OverlayValue": 0,
+                "Smoothing": 0,
+                "IncludeItems": false,
+                "StaticColor": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0,
+                    "a": 1.0
+                }
+            },
+            "ColorScreenMultiplyPreset": {
+                "ArtMeshMultiplyAndScreenColors": []
+            },
+            "HandGestureSettings": {
+                "GestureLeft": "",
+                "GestureRight": "",
+                "GestureCombinator": "AND",
+                "AllowMirroredGesture": false,
+                "DeactivateExpWhenGestureNotDetected": false,
+                "SecondsUntilDetection": 0.5,
+                "SecondsDetected": 0.0,
+                "PercentDetected": 0.0
+            },
+            "LoadModelSettings": {
+                "LoadAtCurrentPosition": true
+            },
+            "Triggers": {
+                "Trigger1": "PageUp",
+                "Trigger2": "N6",
+                "Trigger3": "",
+                "ScreenButton": -1
+            },
+            "IsGlobal": true,
+            "IsActive": true,
+            "Minimized": false,
+            "StopsOnLastFrame": false,
+            "DeactivateAfterKeyUp": false,
+            "OnlyLoadOneRandomItem": false,
+            "DeactivateAfterSeconds": false,
+            "DeactivateAfterSecondsAmount": 10.0,
+            "FadeSecondsAmount": 0.5,
+            "OnScreenHotkeyColor": {
+                "r": 1.0,
+                "g": 1.0,
+                "b": 1.0,
+                "a": 1.0
+            }
+        },
+        {
+            "HotkeyID": "4d316ef983d04407b7e62741d13e93c6",
+            "Name": "Angry",
+            "Action": "ToggleExpression",
+            "File": "Angry.exp3.json",
+            "Folder": "",
+            "Position": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.0,
+                "Rotation": 0.0
+            },
+            "ColorOverlay": {
+                "On": false,
+                "IsStaticColor": false,
+                "Display": -1,
+                "WindowName": "",
+                "IncludeLeft": false,
+                "IncludeMid": false,
+                "IncludeRight": false,
+                "BaseValue": 0,
+                "OverlayValue": 0,
+                "Smoothing": 0,
+                "IncludeItems": false,
+                "StaticColor": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0,
+                    "a": 1.0
+                }
+            },
+            "ColorScreenMultiplyPreset": {
+                "ArtMeshMultiplyAndScreenColors": []
+            },
+            "HandGestureSettings": {
+                "GestureLeft": "",
+                "GestureRight": "",
+                "GestureCombinator": "AND",
+                "AllowMirroredGesture": false,
+                "DeactivateExpWhenGestureNotDetected": false,
+                "SecondsUntilDetection": 0.5,
+                "SecondsDetected": 0.0,
+                "PercentDetected": 0.0
+            },
+            "LoadModelSettings": {
+                "LoadAtCurrentPosition": true
+            },
+            "Triggers": {
+                "Trigger1": "PageUp",
+                "Trigger2": "N5",
+                "Trigger3": "",
+                "ScreenButton": -1
+            },
+            "IsGlobal": true,
+            "IsActive": true,
+            "Minimized": false,
+            "StopsOnLastFrame": false,
+            "DeactivateAfterKeyUp": false,
+            "OnlyLoadOneRandomItem": false,
+            "DeactivateAfterSeconds": false,
+            "DeactivateAfterSecondsAmount": 10.0,
+            "FadeSecondsAmount": 0.5,
+            "OnScreenHotkeyColor": {
+                "r": 1.0,
+                "g": 1.0,
+                "b": 1.0,
+                "a": 1.0
+            }
+        },
+        {
+            "HotkeyID": "2e72a19566194128a170aa46796df82e",
+            "Name": "Cry",
+            "Action": "ToggleExpression",
+            "File": "Cry.exp3.json",
+            "Folder": "",
+            "Position": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.0,
+                "Rotation": 0.0
+            },
+            "ColorOverlay": {
+                "On": false,
+                "IsStaticColor": false,
+                "Display": -1,
+                "WindowName": "",
+                "IncludeLeft": false,
+                "IncludeMid": false,
+                "IncludeRight": false,
+                "BaseValue": 0,
+                "OverlayValue": 0,
+                "Smoothing": 0,
+                "IncludeItems": false,
+                "StaticColor": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0,
+                    "a": 1.0
+                }
+            },
+            "ColorScreenMultiplyPreset": {
+                "ArtMeshMultiplyAndScreenColors": []
+            },
+            "HandGestureSettings": {
+                "GestureLeft": "",
+                "GestureRight": "",
+                "GestureCombinator": "AND",
+                "AllowMirroredGesture": false,
+                "DeactivateExpWhenGestureNotDetected": false,
+                "SecondsUntilDetection": 0.5,
+                "SecondsDetected": 0.0,
+                "PercentDetected": 0.0
+            },
+            "LoadModelSettings": {
+                "LoadAtCurrentPosition": true
+            },
+            "Triggers": {
+                "Trigger1": "PageUp",
+                "Trigger2": "N4",
+                "Trigger3": "",
+                "ScreenButton": -1
+            },
+            "IsGlobal": true,
+            "IsActive": true,
+            "Minimized": false,
+            "StopsOnLastFrame": false,
+            "DeactivateAfterKeyUp": false,
+            "OnlyLoadOneRandomItem": false,
+            "DeactivateAfterSeconds": false,
+            "DeactivateAfterSecondsAmount": 10.0,
+            "FadeSecondsAmount": 0.5,
+            "OnScreenHotkeyColor": {
+                "r": 1.0,
+                "g": 1.0,
+                "b": 1.0,
+                "a": 1.0
+            }
+        },
+        {
+            "HotkeyID": "a29698ed6bb5481c8b4560778217ba9c",
+            "Name": "Love",
+            "Action": "ToggleExpression",
+            "File": "Love.exp3.json",
+            "Folder": "",
+            "Position": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.0,
+                "Rotation": 0.0
+            },
+            "ColorOverlay": {
+                "On": false,
+                "IsStaticColor": false,
+                "Display": -1,
+                "WindowName": "",
+                "IncludeLeft": false,
+                "IncludeMid": false,
+                "IncludeRight": false,
+                "BaseValue": 0,
+                "OverlayValue": 0,
+                "Smoothing": 0,
+                "IncludeItems": false,
+                "StaticColor": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0,
+                    "a": 1.0
+                }
+            },
+            "ColorScreenMultiplyPreset": {
+                "ArtMeshMultiplyAndScreenColors": []
+            },
+            "HandGestureSettings": {
+                "GestureLeft": "",
+                "GestureRight": "",
+                "GestureCombinator": "AND",
+                "AllowMirroredGesture": false,
+                "DeactivateExpWhenGestureNotDetected": false,
+                "SecondsUntilDetection": 0.5,
+                "SecondsDetected": 0.0,
+                "PercentDetected": 0.0
+            },
+            "LoadModelSettings": {
+                "LoadAtCurrentPosition": true
+            },
+            "Triggers": {
+                "Trigger1": "PageUp",
+                "Trigger2": "N3",
+                "Trigger3": "",
+                "ScreenButton": -1
+            },
+            "IsGlobal": true,
+            "IsActive": true,
+            "Minimized": false,
+            "StopsOnLastFrame": false,
+            "DeactivateAfterKeyUp": false,
+            "OnlyLoadOneRandomItem": false,
+            "DeactivateAfterSeconds": false,
+            "DeactivateAfterSecondsAmount": 10.0,
+            "FadeSecondsAmount": 0.5,
+            "OnScreenHotkeyColor": {
+                "r": 1.0,
+                "g": 1.0,
+                "b": 1.0,
+                "a": 1.0
+            }
+        },
+        {
+            "HotkeyID": "bea3f8e33fc6410791ae5292900c0648",
+            "Name": "Nervous",
+            "Action": "ToggleExpression",
+            "File": "Nervous.exp3.json",
+            "Folder": "",
+            "Position": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.0,
+                "Rotation": 0.0
+            },
+            "ColorOverlay": {
+                "On": false,
+                "IsStaticColor": false,
+                "Display": -1,
+                "WindowName": "",
+                "IncludeLeft": false,
+                "IncludeMid": false,
+                "IncludeRight": false,
+                "BaseValue": 0,
+                "OverlayValue": 0,
+                "Smoothing": 0,
+                "IncludeItems": false,
+                "StaticColor": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0,
+                    "a": 1.0
+                }
+            },
+            "ColorScreenMultiplyPreset": {
+                "ArtMeshMultiplyAndScreenColors": []
+            },
+            "HandGestureSettings": {
+                "GestureLeft": "",
+                "GestureRight": "",
+                "GestureCombinator": "AND",
+                "AllowMirroredGesture": false,
+                "DeactivateExpWhenGestureNotDetected": false,
+                "SecondsUntilDetection": 0.5,
+                "SecondsDetected": 0.0,
+                "PercentDetected": 0.0
+            },
+            "LoadModelSettings": {
+                "LoadAtCurrentPosition": true
+            },
+            "Triggers": {
+                "Trigger1": "PageUp",
+                "Trigger2": "N2",
+                "Trigger3": "",
+                "ScreenButton": -1
+            },
+            "IsGlobal": true,
+            "IsActive": true,
+            "Minimized": false,
+            "StopsOnLastFrame": false,
+            "DeactivateAfterKeyUp": false,
+            "OnlyLoadOneRandomItem": false,
+            "DeactivateAfterSeconds": false,
+            "DeactivateAfterSecondsAmount": 10.0,
+            "FadeSecondsAmount": 0.5,
+            "OnScreenHotkeyColor": {
+                "r": 1.0,
+                "g": 1.0,
+                "b": 1.0,
+                "a": 1.0
+            }
+        },
+        {
+            "HotkeyID": "cf2d5215f95e43bc9c9514acd9098e80",
+            "Name": "Sleepy",
+            "Action": "ToggleExpression",
+            "File": "Sleepy.exp3.json",
+            "Folder": "",
+            "Position": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.0,
+                "Rotation": 0.0
+            },
+            "ColorOverlay": {
+                "On": false,
+                "IsStaticColor": false,
+                "Display": -1,
+                "WindowName": "",
+                "IncludeLeft": false,
+                "IncludeMid": false,
+                "IncludeRight": false,
+                "BaseValue": 0,
+                "OverlayValue": 0,
+                "Smoothing": 0,
+                "IncludeItems": false,
+                "StaticColor": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0,
+                    "a": 1.0
+                }
+            },
+            "ColorScreenMultiplyPreset": {
+                "ArtMeshMultiplyAndScreenColors": []
+            },
+            "HandGestureSettings": {
+                "GestureLeft": "",
+                "GestureRight": "",
+                "GestureCombinator": "AND",
+                "AllowMirroredGesture": false,
+                "DeactivateExpWhenGestureNotDetected": false,
+                "SecondsUntilDetection": 0.5,
+                "SecondsDetected": 0.0,
+                "PercentDetected": 0.0
+            },
+            "LoadModelSettings": {
+                "LoadAtCurrentPosition": true
+            },
+            "Triggers": {
+                "Trigger1": "PageUp",
+                "Trigger2": "N1",
+                "Trigger3": "",
+                "ScreenButton": -1
+            },
+            "IsGlobal": true,
+            "IsActive": true,
+            "Minimized": false,
+            "StopsOnLastFrame": false,
+            "DeactivateAfterKeyUp": false,
+            "OnlyLoadOneRandomItem": false,
+            "DeactivateAfterSeconds": false,
+            "DeactivateAfterSecondsAmount": 10.0,
+            "FadeSecondsAmount": 0.5,
+            "OnScreenHotkeyColor": {
+                "r": 1.0,
+                "g": 1.0,
+                "b": 1.0,
+                "a": 1.0
+            }
+        },
+        {
+            "HotkeyID": "904b64a2c4564d86b7986217554dac56",
+            "Name": "",
+            "Action": "ToggleExpression",
+            "File": "Settings example.exp3.json",
+            "Folder": "",
+            "Position": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.0,
+                "Rotation": 0.0
+            },
+            "ColorOverlay": {
+                "On": false,
+                "IsStaticColor": false,
+                "Display": -1,
+                "WindowName": "",
+                "IncludeLeft": false,
+                "IncludeMid": false,
+                "IncludeRight": false,
+                "BaseValue": 0,
+                "OverlayValue": 0,
+                "Smoothing": 0,
+                "IncludeItems": false,
+                "StaticColor": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0,
+                    "a": 1.0
+                }
+            },
+            "ColorScreenMultiplyPreset": {
+                "ArtMeshMultiplyAndScreenColors": []
+            },
+            "HandGestureSettings": {
+                "GestureLeft": "",
+                "GestureRight": "",
+                "GestureCombinator": "AND",
+                "AllowMirroredGesture": false,
+                "DeactivateExpWhenGestureNotDetected": false,
+                "SecondsUntilDetection": 0.5,
+                "SecondsDetected": 0.0,
+                "PercentDetected": 0.0
+            },
+            "LoadModelSettings": {
+                "LoadAtCurrentPosition": true
+            },
+            "Triggers": {
+                "Trigger1": "PageUp",
+                "Trigger2": "N0",
+                "Trigger3": "",
+                "ScreenButton": -1
+            },
+            "IsGlobal": true,
+            "IsActive": true,
+            "Minimized": false,
+            "StopsOnLastFrame": false,
+            "DeactivateAfterKeyUp": false,
+            "OnlyLoadOneRandomItem": false,
+            "DeactivateAfterSeconds": false,
+            "DeactivateAfterSecondsAmount": 10.0,
+            "FadeSecondsAmount": 0.5,
+            "OnScreenHotkeyColor": {
+                "r": 1.0,
+                "g": 1.0,
+                "b": 1.0,
+                "a": 1.0
+            }
+        }
+    ],
+    "HotkeySettings": {
+        "UseOnScreenHotkeys": false,
+        "UseKeyboardHotkeys": true,
+        "SendOnScreenHotkeysToPC": true,
+        "OnScreenHotkeyAlpha": 75
+    },
+    "ArtMeshDetails": {
+        "ArtMeshesExcludedFromPinning": [],
+        "ArtMeshesThatDeleteItemsOnDrop": [],
+        "ArtMeshSceneLightingMultipliers": [],
+        "ArtMeshMultiplyAndScreenColors": []
+    },
+    "ParameterCustomization": {
+        "ParametersExcludedFromVNetSmoothing": []
+    },
+    "PhysicsCustomizationSettings": {
+        "PhysicsMultipliersPerPhysicsGroup": [],
+        "WindMultipliersPerPhysicsGroup": [],
+        "DraggingPhysicsMultipliersPerPhysicsGroup": []
+    },
+    "FolderInfo": {
+        "HotkeyFolders": [],
+        "ConfigItemFolders": []
+    },
+    "SavedActiveExpressions": []
+}

@@ -23,11 +23,10 @@
 		B89E2FBC1AE02CDD00F2D1C7 /* DiagnosticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89E2F9C1AE02CDD00F2D1C7 /* DiagnosticsView.swift */; };
 		B89E2FBD1AE02CDD00F2D1C7 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89E2F9D1AE02CDD00F2D1C7 /* Logging.swift */; };
 		CA2000011AE02CDD00F2D1C7 /* Girl_Sounds in Resources */ = {isa = PBXBuildFile; fileRef = CA1000011AE02CDD00F2D1C7 /* Girl_Sounds */; };
-		CA2000021AE02CDD00F2D1C7 /* Girl_Images in Resources */ = {isa = PBXBuildFile; fileRef = CA1000021AE02CDD00F2D1C7 /* Girl_Images */; };
-		CA2000031AE02CDD00F2D1C7 /* Cat_Sounds in Resources */ = {isa = PBXBuildFile; fileRef = CA1000031AE02CDD00F2D1C7 /* Cat_Sounds */; };
-		CA2000041AE02CDD00F2D1C7 /* Cat_Images in Resources */ = {isa = PBXBuildFile; fileRef = CA1000041AE02CDD00F2D1C7 /* Cat_Images */; };
+		CA2000051AE02CDD00F2D1C7 /* Live2D in Resources */ = {isa = PBXBuildFile; fileRef = CA1000051AE02CDD00F2D1C7 /* Live2D */; };
 		B89E2FC01AE02CDD00F2D1C7 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B89E2FA21AE02CDD00F2D1C7 /* AVFoundation.framework */; };
 		B89E2FC21AE02CDD00F2D1C7 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B89E2FA41AE02CDD00F2D1C7 /* IOKit.framework */; };
+		B89E2FC61AE02CDD00F2D1C7 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B89E2FC51AE02CDD00F2D1C7 /* WebKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,9 +48,8 @@
 		B89E2F9D1AE02CDD00F2D1C7 /* Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
 		B89E2F9E1AE02CDD00F2D1C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CA1000011AE02CDD00F2D1C7 /* Girl_Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Girl_Sounds; sourceTree = "<group>"; };
-		CA1000021AE02CDD00F2D1C7 /* Girl_Images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Girl_Images; sourceTree = "<group>"; };
-		CA1000031AE02CDD00F2D1C7 /* Cat_Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Cat_Sounds; sourceTree = "<group>"; };
-		CA1000041AE02CDD00F2D1C7 /* Cat_Images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Cat_Images; sourceTree = "<group>"; };
+		CA1000051AE02CDD00F2D1C7 /* Live2D */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Live2D; sourceTree = "<group>"; };
+		B89E2FC51AE02CDD00F2D1C7 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		B89E2FA11AE02CDD00F2D1C7 /* MoanBar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MoanBar.entitlements; sourceTree = "<group>"; };
 		B89E2FA21AE02CDD00F2D1C7 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		B89E2FA41AE02CDD00F2D1C7 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
@@ -64,6 +62,7 @@
 			files = (
 				B89E2FC01AE02CDD00F2D1C7 /* AVFoundation.framework in Frameworks */,
 				B89E2FC21AE02CDD00F2D1C7 /* IOKit.framework in Frameworks */,
+				B89E2FC61AE02CDD00F2D1C7 /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,9 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				CA1000011AE02CDD00F2D1C7 /* Girl_Sounds */,
-				CA1000021AE02CDD00F2D1C7 /* Girl_Images */,
-				CA1000031AE02CDD00F2D1C7 /* Cat_Sounds */,
-				CA1000041AE02CDD00F2D1C7 /* Cat_Images */,
+				CA1000051AE02CDD00F2D1C7 /* Live2D */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -200,6 +197,7 @@
 			children = (
 				B89E2FA21AE02CDD00F2D1C7 /* AVFoundation.framework */,
 				B89E2FA41AE02CDD00F2D1C7 /* IOKit.framework */,
+				B89E2FC51AE02CDD00F2D1C7 /* WebKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -263,9 +261,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA2000011AE02CDD00F2D1C7 /* Girl_Sounds in Resources */,
-				CA2000021AE02CDD00F2D1C7 /* Girl_Images in Resources */,
-				CA2000031AE02CDD00F2D1C7 /* Cat_Sounds in Resources */,
-				CA2000041AE02CDD00F2D1C7 /* Cat_Images in Resources */,
+				CA2000051AE02CDD00F2D1C7 /* Live2D in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

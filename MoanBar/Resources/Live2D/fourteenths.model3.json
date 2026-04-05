@@ -1,0 +1,32 @@
+{
+	"Version": 3,
+	"FileReferences": {
+		"Moc": "fourteenths.moc3",
+		"Textures": [
+			"fourteenths.4096/texture_00.png",
+			"fourteenths.4096/texture_01.png"
+		],
+		"Physics": "fourteenths.physics3.json",
+		"DisplayInfo": "fourteenths.cdi3.json",
+		"Expressions": [
+			{"Name": "Amazed",  "File": "Amazed.exp3.json"},
+			{"Name": "Angry",   "File": "Angry.exp3.json"},
+			{"Name": "Cry",     "File": "Cry.exp3.json"},
+			{"Name": "Love",    "File": "Love.exp3.json"},
+			{"Name": "Nervous", "File": "Nervous.exp3.json"},
+			{"Name": "Sleepy",  "File": "Sleepy.exp3.json"}
+		]
+	},
+	"Groups": [
+		{
+			"Target": "Parameter",
+			"Name": "LipSync",
+			"Ids": []
+		},
+		{
+			"Target": "Parameter",
+			"Name": "EyeBlink",
+			"Ids": []
+		}
+	]
+}

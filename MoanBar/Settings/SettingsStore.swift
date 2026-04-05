@@ -36,13 +36,6 @@ final class SettingsStore: ObservableObject {
         didSet { save(cooldown, for: .cooldown) }
     }
 
-    // MARK: - Character
-
-    /// Active character theme. "Girl" = anime girl, "Cat" = cat.
-    @Published var character: String {
-        didSet { save(character, for: .character) }
-    }
-
     // MARK: - Volume
 
     @Published var minVolume: Double {
@@ -61,7 +54,6 @@ final class SettingsStore: ObservableObject {
         overlayEnabled = d.optionalBool(Key.overlayEnabled.rawValue) ?? true
         mockMode      = d.optionalBool(Key.mockMode.rawValue)     ?? false
         launchAtLogin = d.optionalBool(Key.launchAtLogin.rawValue) ?? false
-        character     = d.optionalString(Key.character.rawValue)  ?? "Girl"
         sensitivity   = d.optionalDouble(Key.sensitivity.rawValue) ?? 1.5
         cooldown      = d.optionalDouble(Key.cooldown.rawValue)    ?? 0.15
         minVolume     = d.optionalDouble(Key.minVolume.rawValue)   ?? 0.10
@@ -76,7 +68,6 @@ final class SettingsStore: ObservableObject {
         case overlayEnabled = "mb.overlayEnabled"
         case mockMode       = "mb.mockMode"
         case launchAtLogin  = "mb.launchAtLogin"
-        case character      = "mb.character"
         case sensitivity    = "mb.sensitivity"
         case cooldown       = "mb.cooldown"
         case minVolume      = "mb.minVolume"

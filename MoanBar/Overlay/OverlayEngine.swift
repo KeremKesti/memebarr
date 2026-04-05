@@ -1,130 +1,144 @@
 import AppKit
-import SwiftUI
+import WebKit
 
-// MARK: - Overlay engine
+// MARK: - Live2D overlay engine
 
-/// Manages the floating image overlay. Must be called from the main thread.
-final class OverlayEngine {
+/// Manages a floating WKWebView panel that renders the Live2D character.
+/// Expressions are triggered on every slap event.
+/// Must be called from the main thread.
+final class Live2DEngine: NSObject, WKScriptMessageHandler {
 
     private var window: OverlayWindow?
-    private var allImages: [URL] = []
-    private var recentlyShown: [URL] = []
-    private let recentWindow = 3
+    private var webView: WKWebView?
+    private var isModelReady = false
+    private var pendingExpression: String?
     private var hideTask: DispatchWorkItem?
+
+    private let expressions = ["Amazed", "Angry", "Cry", "Love", "Nervous", "Sleepy"]
+    private var recentExpressions: [String] = []
+    private let recentWindow = 2
+
+    // MARK: - Panel size / position
+
+    private let panelWidth:  CGFloat = 400
+    private let panelHeight: CGFloat = 700
+    private let screenMargin: CGFloat = 20
 
     // MARK: - Setup
 
-    /// Scans `folder` for supported image files. Clears previously loaded images first.
-    func loadImages(from folder: URL) {
-        allImages.removeAll()
-        recentlyShown.removeAll()
-        let supported = Set(["png", "jpg", "jpeg", "gif", "webp", "heic"])
-        guard let entries = try? FileManager.default.contentsOfDirectory(
-            at: folder, includingPropertiesForKeys: [.isRegularFileKey]
-        ) else {
-            debugLog("OverlayEngine: images folder not found at \(folder.path)", category: "overlay")
+    /// Creates the WKWebView and starts loading the Live2D model.
+    /// Call once at app startup so the model is pre-loaded before the first slap.
+    func setup() {
+        guard let modelDir = Bundle.main.resourceURL?.appendingPathComponent("Live2D"),
+              let htmlURL  = modelDir.appendingPathComponent("live2d_overlay.html") as URL?
+        else {
+            debugLog("Live2DEngine: Live2D resource folder not found", category: "overlay")
             return
         }
-        allImages = entries.filter { supported.contains($0.pathExtension.lowercased()) }
-        debugLog("OverlayEngine: loaded \(allImages.count) image(s)", category: "overlay")
+
+        let config = WKWebViewConfiguration()
+        config.userContentController.add(self, name: "live2d")
+
+        let wv = WKWebView(
+            frame: NSRect(x: 0, y: 0, width: panelWidth, height: panelHeight),
+            configuration: config
+        )
+        wv.isOpaque = false
+        wv.underPageBackgroundColor = .clear
+        wv.allowsMagnification = false
+        webView = wv
+
+        wv.loadFileURL(htmlURL, allowingReadAccessTo: modelDir)
+        debugLog("Live2DEngine: loading model from \(modelDir.path)", category: "overlay")
     }
 
     // MARK: - Showing
 
-    /// Displays a random image overlay for `duration` seconds with fade-in/out.
-    /// Duration should match the audio clip length so the image disappears when
-    /// the sound ends. Calling show() while an overlay is visible resets the timer.
-    func show(for duration: TimeInterval = 2.0) {
+    /// Shows the Live2D panel and plays a random expression for `duration` seconds.
+    func show(for duration: TimeInterval = 3.0) {
         assert(Thread.isMainThread)
-        guard !allImages.isEmpty else {
-            debugLog("OverlayEngine: no images loaded — skipping overlay", category: "overlay")
-            return
-        }
 
-        let chosen = pickImage()
-        recentlyShown.append(chosen)
-        if recentlyShown.count > recentWindow { recentlyShown.removeFirst() }
+        let expression = pickExpression()
+        createPanelIfNeeded()
 
-        // Cancel any pending hide
-        hideTask?.cancel()
+        guard let panel = window, let screen = NSScreen.main else { return }
 
-        // Create (or reuse) the panel
-        if window == nil {
-            window = OverlayWindow()
-        }
-        guard let panel = window else { return }
+        let x = screen.frame.maxX - panelWidth  - screenMargin
+        let y = screen.frame.minY + screenMargin
+        panel.setFrame(NSRect(x: x, y: y, width: panelWidth, height: panelHeight), display: false)
 
-        // Swap content view with fresh SwiftUI host so animation re-triggers
-        let host = NSHostingView(rootView: OverlayImageView(imageURL: chosen, duration: duration))
-        host.frame = panel.contentRect(forFrameRect: panel.frame)
-        panel.contentView = host
-
-        // Cover the entire main screen
-        if let screen = NSScreen.main {
-            panel.setFrame(screen.frame, display: false)
-        }
+        // Fade in
+        panel.alphaValue = 0
         panel.orderFront(nil)
-
-        debugLog("OverlayEngine: showing \(chosen.lastPathComponent) for \(String(format:"%.2f", duration))s", category: "overlay")
-
-        // Schedule hide after the clip duration
-        let task = DispatchWorkItem { [weak self] in
-            self?.window?.orderOut(nil)
+        NSAnimationContext.runAnimationGroup { ctx in
+            ctx.duration = 0.20
+            panel.animator().alphaValue = 1.0
         }
+
+        triggerExpression(expression)
+        debugLog("Live2DEngine: showing expression '\(expression)' for \(String(format:"%.2f",duration))s", category: "overlay")
+
+        // Schedule hide
+        hideTask?.cancel()
+        let task = DispatchWorkItem { [weak self] in self?.hide() }
         hideTask = task
         DispatchQueue.main.asyncAfter(deadline: .now() + duration, execute: task)
     }
 
-    var imageCount: Int { allImages.count }
+    var expressionCount: Int { expressions.count }
+
+    // MARK: - WKScriptMessageHandler
+
+    func userContentController(_ controller: WKUserContentController,
+                               didReceive message: WKScriptMessage) {
+        guard message.name == "live2d", (message.body as? String) == "ready" else { return }
+        isModelReady = true
+        debugLog("Live2DEngine: model ready", category: "overlay")
+        if let expr = pendingExpression {
+            pendingExpression = nil
+            webView?.evaluateJavaScript("playExpression('\(expr)')") { _, _ in }
+        }
+    }
 
     // MARK: - Private
 
-    private func pickImage() -> URL {
-        var candidates = allImages
+    private func createPanelIfNeeded() {
+        guard window == nil else { return }
+        let panel = OverlayWindow()
+        if let wv = webView {
+            wv.frame = NSRect(x: 0, y: 0, width: panelWidth, height: panelHeight)
+            panel.contentView = wv
+        }
+        window = panel
+    }
+
+    private func hide() {
+        guard let panel = window else { return }
+        webView?.evaluateJavaScript("resetExpression()") { _, _ in }
+        NSAnimationContext.runAnimationGroup({ ctx in
+            ctx.duration = 0.30
+            panel.animator().alphaValue = 0.0
+        }, completionHandler: {
+            panel.orderOut(nil)
+        })
+    }
+
+    private func triggerExpression(_ name: String) {
+        if isModelReady {
+            webView?.evaluateJavaScript("playExpression('\(name)')") { _, _ in }
+        } else {
+            pendingExpression = name
+        }
+    }
+
+    private func pickExpression() -> String {
+        var candidates = expressions
         if candidates.count > recentWindow {
-            candidates.removeAll { recentlyShown.contains($0) }
+            candidates.removeAll { recentExpressions.contains($0) }
         }
-        return candidates.randomElement() ?? allImages[0]
-    }
-}
-
-// MARK: - SwiftUI content
-
-private struct OverlayImageView: View {
-    let imageURL: URL
-    let duration: TimeInterval
-    @State private var opacity: Double = 0
-
-    private let fadeIn:  TimeInterval = 0.25
-    private let fadeOut: TimeInterval = 0.35
-
-    var body: some View {
-        ZStack {
-            Color.clear
-            if let nsImage = NSImage(contentsOf: imageURL) {
-                Image(nsImage: nsImage)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(maxWidth: 320, maxHeight: 320)
-                    .shadow(color: .black.opacity(0.5), radius: 12, x: 0, y: 4)
-                    .opacity(opacity)
-                    .onAppear { startAnimation() }
-            }
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .allowsHitTesting(false)
-    }
-
-    private func startAnimation() {
-        withAnimation(.easeIn(duration: fadeIn)) {
-            opacity = 1
-        }
-        // Start fade-out early enough so it finishes exactly when the clip ends
-        let fadeOutStart = max(fadeIn, duration - fadeOut)
-        DispatchQueue.main.asyncAfter(deadline: .now() + fadeOutStart) {
-            withAnimation(.easeOut(duration: fadeOut)) {
-                opacity = 0
-            }
-        }
+        let chosen = candidates.randomElement() ?? expressions[0]
+        recentExpressions.append(chosen)
+        if recentExpressions.count > recentWindow { recentExpressions.removeFirst() }
+        return chosen
     }
 }

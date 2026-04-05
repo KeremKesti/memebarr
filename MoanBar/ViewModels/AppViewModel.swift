@@ -21,7 +21,7 @@ final class AppViewModel: ObservableObject {
 
     private let detector = SlapDetector()
     private let audioEngine = AudioEngine()
-    private let overlayEngine = OverlayEngine()
+    private let live2dEngine = Live2DEngine()
 
     // Concrete provider — replaced when mockMode toggles
     private var sensorProvider: SensorProvider?
@@ -40,15 +40,10 @@ final class AppViewModel: ObservableObject {
     // MARK: - Assets
 
     private func loadAssets() {
-        let base = Bundle.main.resourceURL
-        let char = settings.character  // "Girl" or "Cat"
-
-        if let soundsURL = base?.appendingPathComponent("\(char)_Sounds") {
+        if let soundsURL = Bundle.main.resourceURL?.appendingPathComponent("Girl_Sounds") {
             audioEngine.loadClips(from: soundsURL)
         }
-        if let imagesURL = base?.appendingPathComponent("\(char)_Images") {
-            overlayEngine.loadImages(from: imagesURL)
-        }
+        live2dEngine.setup()
     }
 
     // MARK: - Sensor setup
@@ -144,14 +139,6 @@ final class AppViewModel: ObservableObject {
             }
             .store(in: &cancellables)
 
-        // Reload assets when character changes
-        settings.$character
-            .dropFirst()
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
-                self?.loadAssets()
-            }
-            .store(in: &cancellables)
     }
 
     private func restartSensorStack() {
@@ -169,8 +156,8 @@ final class AppViewModel: ObservableObject {
 
     private func handleSlap(_ event: SlapEvent) {
         slapCount += 1
-        let clipDuration = settings.soundEnabled ? audioEngine.play(intensity: event.intensity) : 2.0
-        if settings.overlayEnabled { overlayEngine.show(for: clipDuration) }
+        let clipDuration = settings.soundEnabled ? audioEngine.play(intensity: event.intensity) : 3.0
+        if settings.overlayEnabled { live2dEngine.show(for: clipDuration) }
         logger.info("Slap #\(self.slapCount) intensity=\(String(format:"%.2f", event.intensity))")
     }
 
@@ -187,7 +174,7 @@ final class AppViewModel: ObservableObject {
     }
 
     func testOverlay() {
-        overlayEngine.show()
+        live2dEngine.show()
     }
 
     func resetCounter() {

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * { margin: 0; padding: 0; }
+    html, body {
+      width: 400px;
+      height: 700px;
+      overflow: hidden;
+      background: transparent;
+    }
+    canvas { display: block; }
+  </style>
+</head>
+<body>
+  <script src="https://cubism.live2d.com/sdk-web/cubismcore/live2dcubismcore.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pixi.js@6.5.8/dist/browser/pixi.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pixi-live2d-display@0.4.0/dist/index.min.js"></script>
+  <script>
+    var W = 400, H = 700;
+
+    var app = new PIXI.Application({
+      width: W,
+      height: H,
+      backgroundAlpha: 0,
+      antialias: true,
+      resolution: 1,
+    });
+    document.body.appendChild(app.view);
+
+    var model = null;
+
+    PIXI.live2d.Live2DModel.from('fourteenths.model3.json', { autoInteract: false })
+      .then(function(m) {
+        model = m;
+        app.stage.addChild(model);
+
+        var scale = Math.min(W / model.width, H / model.height) * 0.95;
+        model.scale.set(scale);
+        model.anchor.set(0.5, 1.0);
+        model.x = W / 2;
+        model.y = H;
+
+        if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.live2d) {
+          window.webkit.messageHandlers.live2d.postMessage('ready');
+        }
+      })
+      .catch(function(e) {
+        console.error('Live2D load error:', e);
+      });
+
+    window.playExpression = function(name) {
+      if (model) model.expression(name);
+    };
+
+    window.resetExpression = function() {
+      if (model) model.expression();
+    };
+  </script>
+</body>
+</html>

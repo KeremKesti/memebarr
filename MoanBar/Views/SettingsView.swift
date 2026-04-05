@@ -43,8 +43,8 @@ private struct GeneralTab: View {
                     ) { vm.settings.overlayEnabled = false }
 
                     ModeCard(
-                        icon: "photo.fill",
-                        title: "Sound with Images",
+                        icon: "figure.wave",
+                        title: "Sound with Live2D",
                         selected: vm.settings.overlayEnabled
                     ) { vm.settings.overlayEnabled = true }
                 }
